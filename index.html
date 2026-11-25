@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ThS. Trương Quốc Khánh</title>
+<meta name="description" content="Trang cá nhân ThS. Trương Quốc Khánh – Giảng viên Công nghệ kỹ thuật ô tô, Khoa Cơ điện – Điện tử, Trường Đại học Lạc Hồng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday-professional: hồ sơ giảng viên kỹ thuật, rõ ràng, chỉn chu
+   IDEA bản vẽ kỹ thuật (blueprint) của một chiếc ô tô trong xưởng thực hành
+   PICTURE mặt cắt xe: động cơ đốt trong, hộp số, mô-tơ điện, pin, LiDAR – nối với các môn dạy
+   COLOUR nền trắng, xanh dương LHU chủ đạo, xanh nhạt hỗ trợ, đỏ cam làm điểm nhấn
+   TYPE Be Vietnam Pro 800 cho tiêu đề + Be Vietnam Pro cho nội dung
+   LAYOUT băng xanh full-width: tên trên, bản vẽ xe bên dưới; điện thoại xếp dọc */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0a1220);--ink:light-dark(#0d1b2e,#e8eef8);--mut:light-dark(#4a5a70,#9fb0c8);--blue:#0b56b3;--deep:light-dark(#0a4596,#0b2a5c);--soft:light-dark(#e9f1fc,#122038);--line:light-dark(#d5e1f1,#22324d);--acc:#e8452c;--card:light-dark(#ffffff,#0f1a2c)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Be Vietnam Pro",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+img,svg{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-inline:max(5vw,16px)}
+h1,h2,h3{line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,3.6vw,40px);font-weight:800}
+h3{font-size:19px;font-weight:700}
+p{margin:0}
+.lead{color:var(--mut);max-width:62ch;margin-top:10px}
+nav{position:sticky;top:0;z-index:5;background:var(--deep);color:#fff;padding-inline:max(5vw,16px)}
+nav .wrap{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;min-height:60px}
+nav b{font-weight:800;margin-right:auto;white-space:nowrap}
+nav a{text-decoration:none;font-size:15px;opacity:.88;padding:10px 2px}
+nav a:hover,nav a:focus-visible{opacity:1;text-decoration:underline;text-underline-offset:5px}
+.hero{background:var(--deep);color:#fff;position:relative;overflow:hidden;padding-bottom:0}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:28px 28px}
+.hero .wrap{position:relative;display:grid;gap:22px}
+.hero .top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:end}
+.hero h1{font-size:clamp(34px,5.4vw,60px);font-weight:800}
+.hero .role{font-size:clamp(17px,1.6vw,20px);margin-top:12px;color:#d7e6ff;max-width:46ch}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:#ffffff30;border:1px solid #ffffff30;border-radius:10px;overflow:hidden}
+.figs div{background:var(--deep);padding:14px 16px}
+.figs strong{display:block;font-size:clamp(28px,3.4vw,40px);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.figs span{font-size:14px;color:#c9dbf7}
+.draw{width:100%;height:auto;display:block;margin-top:6px}
+.draw text{font:600 15px "Be Vietnam Pro",sans-serif;fill:#fff}
+.draw .lb{fill:#bcd5ff;font-weight:500;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 8px}
+.chips button{font:inherit;font-size:15px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.chips button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.count{font-size:14px;color:var(--mut);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;grid-template-rows:auto auto 1fr auto;gap:10px}
+.c .hd{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.c .code{font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+.c .tiet{text-align:right;white-space:nowrap}
+.c .tiet strong{display:block;font-size:30px;font-weight:800;line-height:1;color:var(--blue)}
+:root[data-theme=dark] .c .tiet strong{color:#7fb2ff}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .c .tiet strong{color:#7fb2ff}}
+.c .tiet span{font-size:13px;color:var(--mut)}
+.c p{color:var(--mut);font-size:15.5px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;font-size:13.5px}
+.meta span{background:var(--soft);border-radius:6px;padding:3px 9px;white-space:nowrap}
+.meta .tag{background:var(--blue);color:#fff}
+.meta .pm{background:var(--acc);color:#fff}
+.meta .new{border:1px dashed var(--mut);background:none}
+.alt{background:var(--soft)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:24px}
+.skill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.skill ul{margin:10px 0 0;padding-left:20px;color:var(--mut)}
+.skill li{margin:4px 0}
+.acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:24px}
+.act{border-top:4px solid var(--blue);padding-top:14px}
+.act p{color:var(--mut);font-size:15.5px;margin-top:6px}
+.scroll{overflow-x:auto;margin-top:24px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:15px;background:var(--card)}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;font-size:14px}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+footer{background:var(--deep);color:#fff}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px}
+footer dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;margin:0}
+footer dt{color:#bcd5ff}
+footer dd{margin:0}
+footer small{display:block;margin-top:26px;color:#bcd5ff;font-size:13px}
+@media(max-width:900px){.acts{grid-template-columns:repeat(2,minmax(0,1fr))}.hero .top{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.two,.acts,footer .wrap{grid-template-columns:minmax(0,1fr)}nav b{width:100%}nav .wrap{padding-block:8px}.figs span{font-size:13px}table{font-size:13px}th,td{padding:7px 6px}.draw .lb{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.spin{animation:none!important}}
+.spin{transform-box:fill-box;transform-origin:center;animation:sp 6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<nav aria-label="Điều hướng chính"><div class="wrap">
+<b>ThS. Trương Quốc Khánh</b>
+<a href="#gioi-thieu">Giới thiệu</a>
+<a href="#mon-hoc">Môn giảng dạy</a>
+<a href="#chuyen-mon">Chuyên môn</a>
+<a href="#hoat-dong">Hoạt động</a>
+<a href="#lien-he">Liên hệ</a>
+</div></nav>
+
+<header class="hero band" id="gioi-thieu"><div class="wrap">
+<div class="top">
+<div>
+<h1>ThS. Trương Quốc Khánh</h1>
+<p class="role">Giảng viên ngành Công nghệ kỹ thuật ô tô, Khoa Cơ điện – Điện tử, Trường Đại học Lạc Hồng. Giảng dạy ô tô động cơ đốt trong, xe điện, xe tự hành và CAD kỹ thuật.</p>
+</div>
+<div class="figs" aria-label="Tóm tắt giảng dạy">
+<div><strong id="fMon">0</strong><span>môn giảng dạy</span></div>
+<div><strong id="fLop">0</strong><span>lớp học phần</span></div>
+<div><strong id="fTiet">0</strong><span>tiết / học kỳ*</span></div>
+</div>
+</div>
+<svg class="draw" viewBox="0 0 1200 330" role="img" aria-label="Bản vẽ ô tô: động cơ đốt trong, hộp số, mô-tơ điện, bộ pin và cảm biến LiDAR">
+<defs>
+<g id="wh"><circle r="52" fill="#0a3a80" stroke="#fff" stroke-width="3"/><circle r="30" fill="none" stroke="#bcd5ff" stroke-width="2"/><g class="spin"><path d="M0-30V30M-30 0H30M-21-21L21 21M21-21L-21 21" stroke="#bcd5ff" stroke-width="2"/></g><circle r="8" fill="#fff"/></g>
+</defs>
+<line x1="40" y1="298" x2="1160" y2="298" stroke="#ffffff55" stroke-width="2" stroke-dasharray="10 8"/>
+<path d="M150 250 L160 190 Q170 160 220 152 L380 140 Q430 92 520 74 L760 70 Q840 74 900 128 L1010 146 Q1060 156 1062 196 L1066 250 Z" fill="#ffffff10" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+<path d="M410 138 Q450 98 525 86 L620 84 L622 138 Z M640 84 L755 84 Q815 90 860 132 L640 136 Z" fill="#ffffff1a" stroke="#bcd5ff" stroke-width="2"/>
+<rect x="896" y="160" width="120" height="66" rx="8" fill="#e8452c33" stroke="#ff9a85" stroke-width="2.5"/>
+<path d="M910 176h92M910 193h92M910 210h92" stroke="#ff9a85" stroke-width="2"/>
+<rect x="760" y="196" width="84" height="40" rx="6" fill="#ffffff22" stroke="#fff" stroke-width="2"/>
+<path d="M300 236 L860 236" stroke="#bcd5ff" stroke-width="3"/>
+<rect x="380" y="196" width="330" height="44" rx="6" fill="#4fd1a533" stroke="#7fe3c0" stroke-width="2.5"/>
+<path d="M436 196v44M492 196v44M548 196v44M604 196v44M660 196v44" stroke="#7fe3c0" stroke-width="1.5"/>
+<rect x="196" y="176" width="76" height="62" rx="8" fill="#ffd34a33" stroke="#ffe38a" stroke-width="2.5"/>
+<circle cx="234" cy="207" r="16" fill="none" stroke="#ffe38a" stroke-width="2"/>
+<rect x="640" y="50" width="44" height="22" rx="5" fill="#fff"/>
+<path d="M662 50 L560 6 M662 50 L770 6" stroke="#ffffff55" stroke-width="1.5" stroke-dasharray="4 5"/>
+<use href="#wh" x="300" y="248"/><use href="#wh" x="910" y="248"/>
+<path d="M956 160 L956 120 L1000 120" stroke="#ff9a85" stroke-width="1.5" fill="none"/>
+<text x="1006" y="116">Động cơ đốt trong</text><text class="lb" x="1006" y="134">ICE · Truyền lực</text>
+<path d="M802 196 L802 112" stroke="#fff" stroke-width="1.5"/>
+<text x="742" y="104" text-anchor="middle">Hộp số</text>
+<path d="M545 196 L545 168" stroke="#7fe3c0" stroke-width="1.5"/>
+<text x="545" y="160" text-anchor="middle">Bộ pin · BMS</text>
+<path d="M234 176 L234 118 L190 118" stroke="#ffe38a" stroke-width="1.5" fill="none"/>
+<text x="184" y="114" text-anchor="end">Mô-tơ điện</text><text class="lb" x="184" y="132" text-anchor="end">PMSM · Inverter</text>
+<text x="662" y="28" text-anchor="middle">LiDAR · Xe tự hành</text>
+<text class="lb" x="40" y="324">Bản vẽ minh họa · LHU · Khoa Cơ điện – Điện tử</text>
+</svg>
+</div></header>
+
+<section class="band" id="mon-hoc"><div class="wrap">
+<h2>Môn giảng dạy</h2>
+<p class="lead">Các học phần Thầy phụ trách tại ngành Công nghệ kỹ thuật ô tô và Cơ khí. Chọn nhóm để lọc.</p>
+<div class="chips" id="chips" role="group" aria-label="Lọc theo nhóm môn"></div>
+<p class="count" id="count"></p>
+<div class="grid" id="grid"></div>
+
+<div class="scroll"><table>
+<thead><tr><th>Mã môn</th><th>Môn học</th><th>Lớp</th><th class="n">HK</th><th class="n">Số tiết</th><th>Ghi chú</th></tr></thead>
+<tbody id="tb"></tbody>
+</table></div>
+<p class="count" style="margin-top:10px">* Tổng số tiết tính theo lớp học phần có trong bảng phân công; môn chưa có số tiết không tính.</p>
+</div></section>
+
+<section class="band alt" id="chuyen-mon"><div class="wrap">
+<h2>Chuyên môn</h2>
+<p class="lead">Từ ô tô truyền thống đến xe điện và xe tự hành, gắn giảng dạy với thực hành trên xe và mô hình thật.</p>
+<div class="two">
+<div class="skill"><h3>Ô tô động cơ đốt trong</h3><ul><li>Động cơ, hệ thống truyền lực</li><li>Điều khiển động cơ: ECU, cảm biến, cơ cấu chấp hành</li><li>Điện – điện tử ô tô, chẩn đoán (AllData)</li></ul></div>
+<div class="skill"><h3>Xe điện</h3><ul><li>Pin lithium-ion và BMS</li><li>Inverter, động cơ PMSM, điều khiển FOC</li><li>Thực hành trên xe VinFast</li></ul></div>
+<div class="skill"><h3>Cơ điện tử, robot và AI</h3><ul><li>Arduino, ESP32, STM32, Raspberry Pi</li><li>ROS/Gazebo, mô phỏng CARLA</li><li>MATLAB/Simulink</li></ul></div>
+<div class="skill"><h3>CAD/CAE</h3><ul><li>SolidWorks, 3DEXPERIENCE</li><li>AutoCAD, bản vẽ kỹ thuật</li><li>Thiết kế, mô phỏng chi tiết và cụm lắp</li></ul></div>
+</div>
+</div></section>
+
+<section class="band" id="hoat-dong"><div class="wrap">
+<h2>Hoạt động cùng sinh viên</h2>
+<p class="lead">Ngoài lớp học: hướng dẫn đồ án, nghiên cứu khoa học, chủ nhiệm lớp và các sân chơi kỹ thuật.</p>
+<div class="acts">
+<div class="act"><h3>Robocon</h3><p>Đồng hành cùng đội tuyển robot của khoa.</p></div>
+<div class="act"><h3>Shell Eco-marathon</h3><p>Xe tiết kiệm năng lượng do sinh viên thiết kế, chế tạo.</p></div>
+<div class="act"><h3>LHU Racing</h3><p>Xe đua sinh viên: thiết kế, chế tạo, trưng bày.</p></div>
+<div class="act"><h3>Hội thi tay nghề</h3><p>Kỹ năng thực hành ô tô cho sinh viên.</p></div>
+</div>
+</div></section>
+
+<footer class="band" id="lien-he"><div class="wrap">
+<div>
+<h2>Liên hệ</h2>
+<p class="lead" style="color:#d7e6ff">Sinh viên cần tài liệu môn học, hỏi về đồ án hoặc đề tài nghiên cứu xin liên hệ qua các kênh sau.</p>
+</div>
+<dl>
+<dt>Đơn vị</dt><dd>Khoa Cơ điện – Điện tử, Trường Đại học Lạc Hồng, Đồng Nai</dd>
+<dt>Email</dt><dd><a href="mailto:khanhtq@lhu.edu.vn">khanhtq@lhu.edu.vn</a></dd>
+<dt>Điện thoại</dt><dd><a href="tel:0393231317">0393 231 317</a></dd>
+<dt>Phòng làm việc</dt><dd>…</dd>
+</dl>
+</div>
+<div class="wrap"><small>© ThS. Trương Quốc Khánh · Khoa Cơ điện – Điện tử · Trường Đại học Lạc Hồng</small></div>
+</footer>
+
+<script>
+{
+const M=[
+{ma:"116105",ten:"CAD trong kỹ thuật",nhom:"cad",lop:["26CK111","26CK112"],hk:2,tiet:60,pm:true,mo:"Vẽ và dựng mô hình 3D chi tiết, cụm lắp ráp, xuất bản vẽ kỹ thuật theo TCVN/ISO trên SolidWorks và AutoCAD."},
+{ma:"148139",ten:"Động cơ điện trên ô tô điện",nhom:"ev",lop:["26OD111"],hk:2,tiet:60,mo:"Động cơ PMSM, bộ biến tần (inverter), điều khiển FOC, SVPWM, MTPA; thực hành trên xe điện VinFast."},
+{ma:"",ten:"Động cơ điện",nhom:"ev",lop:[],hk:null,tiet:null,moi:true,mo:"Máy điện một chiều, BLDC, động cơ cảm ứng và PMSM: cấu tạo, đặc tính, phương pháp điều khiển."},
+{ma:"",ten:"Động cơ đốt trong",nhom:"ice",lop:[],hk:null,tiet:null,moi:true,mo:"Cấu tạo, nguyên lý làm việc, cơ cấu phân phối khí, hệ thống nhiên liệu, đánh lửa, bôi trơn, làm mát; tháo lắp và kiểm tra."},
+{ma:"148115",ten:"Thực tập hệ thống truyền lực ô tô",nhom:"ice",lop:["25OD111"],hk:4,tiet:90,nhomTH:2,mo:"Ly hợp, hộp số cơ khí và tự động, trục các-đăng, cầu chủ động, vi sai: tháo lắp, kiểm tra, điều chỉnh."},
+{ma:"148102",ten:"Đồ án thiết kế ô tô",nhom:"ice",lop:["26OD111"],hk:2,tiet:30,mo:"Tính toán, thiết kế một cụm hoặc hệ thống trên ô tô; hoàn thành thuyết minh và bản vẽ."},
+{ma:"148087",ten:"Công nghệ xe tự hành",nhom:"av",lop:["24OD111-24JE111"],hk:6,tiet:45,mo:"Cảm biến camera, LiDAR, radar; định vị, nhận thức môi trường, lập kế hoạch và điều khiển chuyển động; mô phỏng CARLA."},
+{ma:"148088",ten:"Thực tập lập trình xe tự hành",nhom:"av",lop:["24OD111-24JE111"],hk:6,tiet:75,nhomTH:1,mo:"Lập trình mô hình xe tự hành với ROS 2, Raspberry Pi/ESP32, LiDAR; nhận diện làn đường, biển báo và điều khiển bám quỹ đạo."}
+];
+const N={all:"Tất cả",ice:"Ô tô động cơ đốt trong",ev:"Xe điện",av:"Xe tự hành",cad:"CAD kỹ thuật"};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const chips=document.getElementById("chips"),grid=document.getElementById("grid"),count=document.getElementById("count");
+let cur="all";
+chips.innerHTML=Object.keys(N).map(k=>`<button type="button" id="chip-${k}" data-k="${k}" aria-pressed="${k===cur}">${N[k]}</button>`).join("");
+const card=m=>`<article class="c">
+<div class="hd"><div><div class="code">${m.ma?"Mã môn "+esc(m.ma):"Mã môn …"}</div><h3>${esc(m.ten)}</h3></div>
+<div class="tiet">${m.tiet?`<strong>${m.tiet}</strong><span>tiết</span>`:`<strong>…</strong><span>tiết</span>`}</div></div>
+<div class="meta"><span class="tag">${N[m.nhom]}</span>${m.hk?`<span>Học kỳ ${m.hk}</span>`:""}${m.pm?`<span class="pm">Phòng máy</span>`:""}${m.nhomTH?`<span>${m.nhomTH} nhóm TH</span>`:""}${m.moi?`<span class="new">Bổ sung</span>`:""}</div>
+<p>${esc(m.mo)}</p>
+<div class="meta">${m.lop.length?m.lop.map(l=>`<span>Lớp ${esc(l)}</span>`).join(""):`<span>Lớp …</span>`}</div>
+</article>`;
+const render=()=>{
+const L=M.filter(m=>cur==="all"||m.nhom===cur);
+grid.innerHTML=L.map(card).join("");
+count.textContent=`Đang hiển thị ${L.length}/${M.length} môn`;
+for(const b of chips.querySelectorAll("button"))b.setAttribute("aria-pressed",b.dataset.k===cur);
+};
+chips.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cur=b.dataset.k;render();});
+document.getElementById("tb").innerHTML=M.map(m=>`<tr><td>${m.ma?esc(m.ma):"…"}</td><td>${esc(m.ten)}</td><td>${m.lop.length?m.lop.map(esc).join(", "):"…"}</td><td class="n">${m.hk??"…"}</td><td class="n">${m.tiet??"…"}</td><td>${[m.pm?"Phòng máy":"",m.nhomTH?m.nhomTH+" nhóm":""].filter(Boolean).join(", ")}</td></tr>`).join("");
+const lop=M.reduce((a,m)=>a+m.lop.length,0);
+const tiet=M.reduce((a,m)=>a+(m.tiet||0)*m.lop.length,0);
+document.getElementById("fMon").textContent=M.length;
+document.getElementById("fLop").textContent=lop;
+document.getElementById("fTiet").textContent=tiet;
+render();
+}
+</script>
+</body>
+</html>
