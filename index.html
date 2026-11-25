@@ -235,6 +235,10 @@ const EDIT="https://docs.google.com/spreadsheets/d/"+SHEET+"/edit";
 const CSV=t=>"https://docs.google.com/spreadsheets/d/"+SHEET+"/gviz/tq?tqx=out:csv&sheet="+t;
 const NHOM={"Ô tô động cơ đốt trong":"ice","Xe điện":"ev","Xe tự hành":"av","CAD kỹ thuật":"cad"};
 const N={all:"Tất cả",ice:"Ô tô động cơ đốt trong",ev:"Xe điện",av:"Xe tự hành",cad:"CAD kỹ thuật"};
+const KEY="tqke3a2e5e0";
+let gv=false;
+try{const p=new URLSearchParams(location.search).get("gv");if(p===KEY)localStorage.setItem("tqk_gv","1");if(p==="off")localStorage.removeItem("tqk_gv");gv=localStorage.getItem("tqk_gv")==="1"}catch(e){gv=new URLSearchParams(location.search).get("gv")===KEY}
+if(/[?&]gv=/.test(location.search))history.replaceState(null,"",location.pathname+location.hash);
 const LOAI=["Giáo trình","Tài liệu","Bài tập","Video","Thông báo"];
 let M=[
 {id:"116105",ma:"116105",ten:"CAD trong kỹ thuật",nhom:"cad",lop:["26CK111","26CK112"],hk:"2",tiet:60,pm:true,nhomTH:"",mo:"Vẽ và dựng mô hình 3D chi tiết, cụm lắp ráp, xuất bản vẽ kỹ thuật theo TCVN/ISO trên SolidWorks và AutoCAD."},
@@ -252,7 +256,7 @@ const safeUrl=u=>/^https?:\/\//i.test(u||"")?u:"";
 const parse=txt=>{const R=[];let r=[],f="",q=false;for(let i=0;i<txt.length;i++){const c=txt[i];if(q){if(c=='"'){if(txt[i+1]=='"'){f+='"';i++}else q=false}else f+=c}else if(c=='"')q=true;else if(c==","){r.push(f);f=""}else if(c=="\n"){r.push(f);R.push(r);r=[];f=""}else if(c!="\r")f+=c}if(f||r.length){r.push(f);R.push(r)}return R};
 const $=id=>document.getElementById(id);
 const chips=$("chips"),grid=$("grid"),count=$("count"),list=$("list"),detail=$("detail");
-$("editAll").href=EDIT;
+$("editAll").href=EDIT;if(!gv)$("editAll").remove();
 let cur="all";
 chips.innerHTML=Object.keys(N).map(k=>`<button type="button" id="chip-${k}" data-k="${k}" aria-pressed="${k===cur}">${N[k]}</button>`).join("");
 const nTL=id=>T.filter(t=>t.id===id&&t.link).length;
@@ -278,23 +282,23 @@ const renderDetail=id=>{
 const m=M.find(x=>x.id===id);
 if(!m){detail.classList.remove("on");list.classList.remove("off");return}
 const items=T.filter(t=>t.id===id);
-const tabs=[...LOAI,"Danh sách SV"];
+const tabs=gv?[...LOAI,"Danh sách SV"]:[...LOAI];
 if(!tabs.includes(tab))tab="Giáo trình";
 const cnt=l=>l==="Danh sách SV"?m.lop.length:items.filter(t=>t.loai===l).length;
 let body;
-if(tab==="Danh sách SV"){
+if(gv&&tab==="Danh sách SV"){
 body=`<p class="lead">Danh sách sinh viên được lưu ở file Google Sheets riêng tư, mỗi lớp một tab. Chỉ Thầy (đăng nhập Gmail) mở được.</p>
 <div class="lopbox">${m.lop.length?m.lop.map(l=>`<div><b>Lớp ${esc(l)}</b></div>`).join(""):`<div>Lớp …</div>`}</div>
 <p style="margin-top:16px"><a class="btn acc" href="${DSSV}" target="_blank" rel="noopener">Mở danh sách sinh viên</a></p>`;
 }else{
 const L=items.filter(t=>t.loai===tab);
 body=L.length?`<ul class="items">${L.map(t=>{const u=safeUrl(t.link);return `<li><div><b>${esc(t.tieude)}</b>${t.ghichu?`<small>${esc(t.ghichu)}</small>`:""}</div>${u?`<a class="btn pri" href="${esc(u)}" target="_blank" rel="noopener">Mở</a>`:`<span class="src">Chưa có link</span>`}</li>`}).join("")}</ul>`
-:`<div class="empty">Chưa có mục ${esc(tab.toLowerCase())} cho môn này. Thầy thêm dòng mới ở tab TaiLieu với ID môn <b>${esc(m.id)}</b>.</div>`;
+:`<div class="empty">Chưa có mục ${esc(tab.toLowerCase())} cho môn này.${gv?` Thầy thêm dòng mới ở tab TaiLieu với ID môn <b>${esc(m.id)}</b>.`:""}</div>`;
 }
 detail.innerHTML=`<p><a class="btn" href="#mon-hoc">← Tất cả môn</a></p>
 <div class="dh"><div><div class="code">Mã môn ${m.ma?esc(m.ma):"…"} · ${N[m.nhom]||""}</div><h3>${esc(m.ten)}</h3>
 <div class="meta" style="margin-top:10px">${m.hk?`<span>Học kỳ ${esc(m.hk)}</span>`:""}<span>${m.tiet||"…"} tiết</span>${m.lop.map(l=>`<span>${esc(l)}</span>`).join("")}</div></div>
-<a class="btn acc" href="${EDIT}" target="_blank" rel="noopener">Chỉnh sửa</a></div>
+${gv?`<a class="btn acc" href="${EDIT}" target="_blank" rel="noopener">Chỉnh sửa</a>`:""}</div>
 <p class="lead">${esc(m.mo)}</p>
 <div class="tabs" role="tablist">${tabs.map(l=>`<button role="tab" type="button" data-t="${esc(l)}" aria-selected="${l===tab}">${esc(l)}<span>${cnt(l)}</span></button>`).join("")}</div>
 <div>${body}</div>`;
@@ -313,11 +317,12 @@ detail.addEventListener("click",e=>{const b=e.target.closest(".tabs button");if(
 window.addEventListener("hashchange",()=>{tab="Giáo trình";route()});
 renderList();route();
 const src=$("src");
+if(gv){const x=document.createElement("a");x.href="?gv=off";x.textContent="Thoát chế độ GV";x.style.cssText="opacity:.7;font-size:13px";document.querySelector("nav .links").append(x)}
 Promise.all([fetch(CSV("MonHoc")).then(r=>r.text()),fetch(CSV("TaiLieu")).then(r=>r.text())]).then(([a,b])=>{
 const A=parse(a).slice(1).filter(r=>(r[0]||"").trim());
 if(A.length)M=A.map(r=>({id:r[0].trim(),ma:(r[1]||"").trim(),ten:r[2]||"",nhom:NHOM[(r[3]||"").trim()]||"",lop:(r[4]||"").split(/[,;]/).map(x=>x.trim()).filter(Boolean),hk:(r[5]||"").trim(),tiet:parseFloat(r[6])||0,pm:/^c/i.test((r[7]||"").trim()),nhomTH:(r[8]||"").trim(),mo:r[9]||""}));
 T=parse(b).slice(1).filter(r=>(r[0]||"").trim()).map(r=>({id:r[0].trim(),loai:(r[1]||"Tài liệu").trim(),tieude:r[2]||"",link:(r[3]||"").trim(),ghichu:r[4]||""}));
-src.textContent="Dữ liệu cập nhật trực tiếp từ Google Sheets.";
+src.textContent=gv?"Chế độ giảng viên: dữ liệu cập nhật trực tiếp từ Google Sheets.":"";
 renderList();route();
 }).catch(()=>{src.textContent="Không tải được dữ liệu mới từ Google Sheets, đang hiển thị dữ liệu lưu sẵn."});
 }
